@@ -3,6 +3,11 @@
 
 # external requirements
 click
+pandas
+numpy
+textblob
+ipykernel
+scikit-learn
 Sphinx
 coverage
 awscli
