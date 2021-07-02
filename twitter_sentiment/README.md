@@ -1,7 +1,7 @@
 Twitter_Sentiment
 ==============================
 
-Sentiment analysis of tweets surrounding BTC
+Sentiment analysis of tweets
 
 Project Organization
 ------------
