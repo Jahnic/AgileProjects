@@ -6,7 +6,6 @@ from data.get_data import get_recent_tweets
 import pandas as pd
 import math
 from transformers import BertModel
-from pathlib import Path
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 bert = BertModel.from_pretrained('bert-base-uncased')
@@ -24,19 +23,20 @@ st.title('Negative tweet detector')
 twitter_account = st.text_input("Enter a Twitter Username", "SpiritAirlines")
 recent_tweets = get_recent_tweets(twitter_account, n=1)
 prediction_classes = []
-tweet_links = []
 prediction_negative_probability = []
-for tweet_text, tweet_link in recent_tweets:
+for tweet_text, _ in recent_tweets:
     tweet_tensor = preprocess(tweet_text)
     prediction = model(tweet_tensor)
     # sigmoid transform prediction and round to binary -> 0/1
     prediction_rounded = float(torch.round(torch.sigmoid(prediction)))
     # probability of negative sentiment
-    neg_probability = 1 - float(torch.sigmoid(prediction))
+    neg_probability = -1 * float(torch.sigmoid(prediction))
+    print(prediction_rounded)
+    print(neg_probability)
+    print("-" * 25)
     prediction_negative_probability.append(math.exp(neg_probability) * 100)
     prediction_class = index_to_class[prediction_rounded]
     prediction_classes.append(prediction_class)
-    tweet_links.append(tweet_link)
 
 df = pd.DataFrame()
 df['Tweet'] = [x[0] for x in recent_tweets]
