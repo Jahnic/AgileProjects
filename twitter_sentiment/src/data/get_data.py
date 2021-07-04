@@ -11,15 +11,28 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
                  wait_on_rate_limit_notify=True)
 
 
-def get_recent_tweets(user, n=20):
+def get_recent_tweets(query, n=20):
+    """
+    Returns comprehensive list of information on recent tweets that fit query
+    """
     all_tweets = []
     # q -> defines query for tweets
     # extended mode for new 280 character tweet cap
     for tweet in Cursor(api.search,
-                        q=f"@{user}",
+                        q=f"@{query}",
                         lang='en',
                         count=n,
                         tweet_mode="extended").items():
         # append text and link of tweet
-        all_tweets.append((tweet.full_text, f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}"))
+        all_tweets.append((
+                            tweet.full_text,
+                            f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}",
+                            tweet.created_at, tweet.id_str, tweet.favorite_count, tweet.retweet_count,
+                            tweet.in_reply_to_user_id_str, tweet.user.name, tweet.user.screen_name,
+                            tweet.user.id_str, tweet.user.location, tweet.user.url, tweet.user.description,
+                            tweet.user.verified, tweet.user.followers_count, tweet.user.friends_count,
+                            tweet.user.favourites_count, tweet.user.statuses_count, tweet.user.listed_count,
+                            tweet.user.created_at, tweet.user.profile_image_url_https,
+                            tweet.user.default_profile, tweet.user.default_profile_image
+                           ))
     return all_tweets

@@ -24,8 +24,10 @@ twitter_account = st.text_input("Enter a Twitter Username", "SpiritAirlines")
 recent_tweets = get_recent_tweets(twitter_account, n=1)
 prediction_classes = []
 prediction_negative_probability = []
-for tweet_text, _ in recent_tweets:
-    tweet_tensor = preprocess(tweet_text)
+
+# sentiment prediction based on tweet text
+for tweet in recent_tweets:
+    tweet_tensor = preprocess(tweet[0])
     prediction = model(tweet_tensor)
     # sigmoid transform prediction and round to binary -> 0/1
     prediction_rounded = float(torch.round(torch.sigmoid(prediction)))
@@ -43,6 +45,9 @@ df['Tweet'] = [x[0] for x in recent_tweets]
 df['Link'] = [x[1] for x in recent_tweets]
 df['Sentiment'] = prediction_classes
 df['Negative Probability'] = prediction_negative_probability
+df['Likes'] = [x[4] for x in recent_tweets]
+df['Retweets'] = [x[5] for x in recent_tweets]
+df['Date'] = [x[3] for x in recent_tweets]
 df = df.sort_values('Negative Probability', ascending=False)
 
 st.table(df)
