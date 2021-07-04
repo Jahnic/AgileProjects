@@ -23,7 +23,8 @@ def get_recent_tweets(query, n=20):
                         lang='en',
                         count=n,
                         tweet_mode="extended").items():
-        # append text and link of tweet
+
+        # append attributes from tweepy status object
         all_tweets.append((
                             tweet.full_text,
                             f"https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}",
