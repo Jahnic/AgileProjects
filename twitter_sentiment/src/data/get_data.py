@@ -1,8 +1,9 @@
 import tweepy
 import json
+import time
 from tweepy import Cursor
 
-with open("../data/raw/twitter_creds.json") as f:
+with open('../data/raw/twitter_creds.json') as f:
     twitter_credentials = json.load(f)
 
 auth = tweepy.OAuthHandler(twitter_credentials['consumer_key'], twitter_credentials['consumer_secret'])
@@ -21,10 +22,10 @@ def get_recent_tweets(query, n=10):
     # q -> defines query for tweets
     # extended mode for new 280 character tweet cap
     c = Cursor(api.search,
-                        q=f"@{query}",
-                        lang='en',
-                        count=n,
-                        tweet_mode="extended").items()
+               q=f"@{query}",
+               lang='en',
+               count=n,
+               tweet_mode="extended").items()
 
     # rate limit handling
     while True:

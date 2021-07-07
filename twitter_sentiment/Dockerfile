@@ -12,9 +12,9 @@ COPY models/binary_transformer_model.pt /app/models
 COPY data/raw/twitter_creds.json /app/data/raw
 
 WORKDIR /app
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 WORKDIR /app/src
 
-CMD streamlit run app.py
+CMD streamlit run --server.port 8080 --server.enableCORS false app.py
