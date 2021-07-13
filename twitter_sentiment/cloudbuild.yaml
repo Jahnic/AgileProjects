@@ -1,0 +1,18 @@
+steps:
+  - id: unittests
+    name: python:3.8
+    entrypoint: /bin/sh
+    args:
+      - -c
+      - 'pip install -r requirements.txt && python -m unittests discover tests'
+  - id: deploydatasplit
+    name: gcr.io/cloud-builders/gcloud
+    args:
+      - functions
+      - deploy
+      - split_data
+      - --source=./src/functions/prepare_data
+      - --runtime=python38
+      - --trigger-resource=gs://thinking-window-318910_raw_data
+      - --trigger-event google.storage.object.finalize
+      - --entry-point=split_data

@@ -1,0 +1,6 @@
+# external requirements
+google-cloud-storage
+fsspec
+gcsfs
+pandas
+loguru
