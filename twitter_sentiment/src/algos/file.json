@@ -1,0 +1,10 @@
+{
+    "BATCH_SIZE": 64,	
+    "HIDDEN_DIM": 64,
+    "OUTPUT_DIM": 1,
+    "N_LAYERS": 2,
+    "BIDIRECTIONAL": True,
+    "NUM_EPOCHS": 6,
+    "DROPOUT": 0.6,
+    "MIN_FREQ": 5
+}

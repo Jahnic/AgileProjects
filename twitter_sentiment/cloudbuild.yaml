@@ -13,6 +13,6 @@ steps:
       - split_data
       - --source=./src/functions/prepare_data
       - --runtime=python38
-      - --trigger-resource=gs://thinking-window-318910_raw_data
+      - --trigger-resource=thinking-window-318910_raw_data
       - --trigger-event google.storage.object.finalize
       - --entry-point=split_data

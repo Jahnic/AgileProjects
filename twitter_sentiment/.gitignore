@@ -59,9 +59,10 @@ target/
 # DotEnv configuration
 .env
 
-# Database
+# Database/Data
 *.db
 *.rdb
+*.csv
 
 # Pycharm
 .idea
@@ -80,6 +81,8 @@ target/
 
 # exclude models
 /models/
+twitter_sentiment/src/algos/binary_transformer_model.pt
+*.pt
 
 # ignore pretrained model files
 /notebooks/.vector_cache/

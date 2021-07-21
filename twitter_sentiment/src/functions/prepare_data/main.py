@@ -3,8 +3,14 @@ from google.cloud import storage
 import pandas as pd
 from loguru import logger
 from pandas import DataFrame
+import json
+from google.oauth2 import service_account
 
-storage_client = storage.Client()
+# gcloud authentication
+with open('data/raw/thinking-window-iam.json') as source:
+    info = json.load(source)
+gcloud_credentials = service_account.Credentials.from_service_account_info(info)
+storage_client = storage.Client(credentials=gcloud_credentials)
 
 index_to_class = {'positive': 1, 'neutral': 0, 'negative': 0}
 class_to_index = {value: key for key, value in index_to_class.items()}
