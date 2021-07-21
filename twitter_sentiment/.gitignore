@@ -79,10 +79,11 @@ target/
 # exclude data from source control by default
 /data/
 
-# exclude models
+# exclude text and classification models
 /models/
 twitter_sentiment/src/algos/binary_transformer_model.pt
 *.pt
+*.pkl
 
 # ignore pretrained model files
 /notebooks/.vector_cache/
