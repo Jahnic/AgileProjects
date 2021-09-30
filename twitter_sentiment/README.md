@@ -1,9 +1,7 @@
 Twitter_Sentiment
 ==============================
 
-Sentiment analysis of tweets.  
-
-Negative tweets are valuable for two reasons. First, they can reveal flaws that negatively impact the experience of customers. Engineering and science are iterative processes. To strive towards better solutions, one must place the users in the center of any consideration. Negative tweet detection can therefore be of immense value for optimizing the customer experience. Second, negative sentiment can lead to user churn. By responding fast, considerate, and hopefully helpful, customer retention may be improved.   
+Negative tweets are valuable for two reasons. First, they can reveal flaws that negatively impact the experience of customers. Engineering and science are iterative processes rather than one-shot solutions. To strive towards better results, one must place the users in the center of any consideration. Negative tweet detection can therefore be of immense value for guiding the optimization of the customer experience. Second, negative sentiment can lead to user churn. By responding fast, considerate, and hopefully helpful, customer retention may be improved.   
 
 In the here developed web-application, brands can input their twitter handle to receive a list of the most negative current tweets.   
 
